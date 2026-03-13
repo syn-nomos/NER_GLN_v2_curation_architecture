@@ -1,0 +1,18 @@
+system_name: "LegalNER Clean Pipeline"
+version: "1.0.0"
+
+database:
+  default_path: "data/db/annotations.db"
+
+pipeline:
+  automations:
+    phase1_regex: false
+    phase2_memory: false
+    semantic_correction: false
+  
+  models:
+    spacy_model: "el_core_news_sm"
+
+ui:
+  theme: "light"
+  page_size: 10
