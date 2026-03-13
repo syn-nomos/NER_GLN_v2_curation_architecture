@@ -2,15 +2,9 @@
 
 **Submitted to AIAI 2026**
 
-This repository contains the source code, human-in-the-loop (HITL) annotation interface, datasets, and experimental results for the paper **"Human-in-the-Loop Legal Named Entity Annotation with LLM Assistance"**.
+This is the official repository containing the source code, human-in-the-loop (HITL) annotation interface, dataset splits, and experimental results for the 22nd International Conference on Artificial Intelligence Applications and Innovations (AIAI) paper: **"Human-in-the-Loop Legal Named Entity Annotation with LLM Assistance"**.
 
-## 📑 Abstract
 
-High-quality Named Entity Recognition (NER) in the legal domain is often hindered by the scarcity of reliable datasets and the structural noise inherent in legal corpora. To address this, we present a semi-automated Human-in-the-Loop (HITL) architecture designed for the rapid development and enhancement of legal NER datasets. 
-
-Our pipeline integrates a hybrid named-entity extraction engine, combining heuristic-based approaches with a fine-tuned Transformer, and a semantic similarity module within an active learning loop to facilitate named-entity annotations. Crucially, a Large Language Model (LLM) framework acts as a neural adjudicator assistant to resolve conflicts and enforce strict entity constraints. We demonstrate the usefulness of the proposed method by building an improved version of the Greek Legal NER dataset, expanding the named entity volume by 209% while reducing manual annotation to merely 1.4%. Finally, we report evaluation results using the new dataset and a diverse set of NER methods under fully supervised and zero/few-shot scenarios.
-
----
 
 ## 📊 Dataset Statistics (Enhanced GLN v2)
 
@@ -53,8 +47,6 @@ To evaluate the structural integrity and complexity of the Enhanced GLN v2 datas
 | SeNER | Span-based (Fully Supervised) | 54.9 | 49.8 |
 | GLiNER (500 samples) | Span-based (Few-Shot) | 60.5 | 57.6 |
 | GLiNER (Zero-shot) | Span-based (Zero-Shot) | 32.0 | 28.0 |
-
-> **Note**: DeBERTa achieved the highest global score due to robust contextual representations, while span-based and generative models showed localized superiority in defining strict boundaries for extensive entities.
 
 ---
 
