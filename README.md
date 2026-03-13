@@ -87,7 +87,6 @@ pip install -r requirements.txt
 
 ### 2. Loading the Transformers (Model Weights)
 
-Due to repository size constraints, the fine-tuned Transformer models (used for the Phase 1 heuristic engine) are not included. 
 To add the Transformers needed for the application to generate baseline predictions:
 1. Create a `models/` directory at the root of the project: `mkdir models`
 2. Place your fine-tuned Hugging Face weights inside the folder (e.g., `models/roberta_finetuned`).
@@ -95,7 +94,7 @@ To add the Transformers needed for the application to generate baseline predicti
 
 ### 3. Configure External Services
 
-Prior to launching the application, ensure that the appropriate LLM endpoints (e.g., OpenAI or Local/Ollama APIs) are strictly defined in the `config/` files (or via environment variables). These endpoints are required for the Neural Adjudication assistance to function correctly. The local SQLite database maps and indexes will be initialized automatically.
+Prior to launching the application, ensure that the appropriate LLM endpoints (e.g., OpenRouter, OpenAI, or Local/Ollama APIs) are strictly defined in the `config/` files (or via environment variables). These endpoints are required for the Neural Adjudication assistance to function correctly. The local SQLite database maps and indexes will be initialized automatically.
 
 ### 4. Run the Human-in-the-Loop Interface
 
