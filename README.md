@@ -52,33 +52,60 @@ To evaluate the structural integrity and complexity of the Enhanced GLN v2 datas
 
 ## 📁 Repository Structure
 
-- \dataset/\: Contains the Enhanced Greek Legal NER datasets in multiple formats.
-    - \conll/\: Standard BIO format for token classification fine-tuning.
-    - \jsonl/\: Span-based format with absolute character offsets (Tokenizer Agnostic).
-    - \statistics/\: Detailed statistics, counts, and B/I split reports per dataset split.
-- \src/\: Source code of the extraction and evaluation system.
-    - \gents/\: LLM prompts and agent behaviors for neural adjudication.
-    - \core/\ & \utils/\: Helper functionalities used globally.
-- \pp/\: The Human-in-the-Loop Annotation Interface (built with Streamlit).
-- \config/\: System environment variables and API routing configurations.
+```text
+NER_GLN_v2_curation_architecture/
+├── app/                  # Human-in-the-Loop (HITL) Streamlit Interface
+├── config/               # Configuration files (API keys, settings)
+├── dataset/              # Enhanced Greek Legal NER v2 Datasets
+│   ├── conll/            # Tokens and BIO labels (spacy tokenized)
+│   ├── jsonl/            # Span-level absolute character offsets
+│   └── statistics/       # Annotation counts and entity distribution
+├── models/               # (Not tracked) Place custom/fine-tuned models here
+├── src/                  # Core algorithms and pipelines
+│   ├── agents/           # LLM interaction layers and context builders
+│   ├── automations/      # Background sync and mapping routines
+│   ├── core/             # Base logic including vector retrieval & schema
+│   ├── database/         # SQLite interfaces (auto-generated locally)
+│   ├── judges/           # Logic for neural adjudication heuristics
+│   └── training/         # Utility scripts (not deployed to production app)
+├── README.md             # This document
+└── requirements.txt      # Python dependencies
+```
 
 ## 🚀 Setup & Usage
 
-The application requires Python 3.9+ and Streamlit.
+The application requires **Python 3.9+**.
 
-1. **Install dependencies:**
-   \\\ash
-   pip install -r requirements.txt
-   \\\
+### 1. Installation
 
-2. **Configure External Services:**
-   Make sure to configure the LLM endpoints (e.g., OpenAI/Local APIs) in \config/\ as needed. The database is initialized automatically.
+Clone the repository and install the dependencies:
+```bash
+git clone https://github.com/syn-nomos/NER_GLN_v2_curation_architecture.git
+cd NER_GLN_v2_curation_architecture
+pip install -r requirements.txt
+```
 
-3. **Run the Human-in-the-Loop Interface:**
-   \\\ash
-   streamlit run app/Data_Loader.py
-   \\\
+### 2. Loading the Transformers (Model Weights)
 
-4. **Navigate the UI:**
-   Load your unannotated JSON/CoNLL data through the **Data Loader**, utilize the active learning background processes, and adjudicate predictions via the **Annotator** page.
+Due to size constraints, the fine-tuned Transformer models (Phase 1 Baseline or Span-based models) are not included in this repository. 
+To enable the zero-shot/few-shot predictions or the Phase 1 heuristic engine, you must manually mount your local models:
+1. Create a `models/` directory at the root of the project: `mkdir models`
+2. Place your fine-tuned Hugging Face weights or Span-based artifacts inside the folder (e.g., `models/roberta_finetuned`).
+3. Point to this directory internally in your environment `.env` or configurations.
+
+### 3. Configure External Services
+
+Make sure to configure the LLM endpoints (e.g., OpenAI or Local/Ollama APIs) in `config/` (or via environment variables) for the Neural Adjudication to function. The required SQLite database is initialized automatically.
+
+### 4. Run the Human-in-the-Loop Interface
+
+Launch the interactive annotation UI via Streamlit:
+```bash
+streamlit run app/Data_Loader.py
+```
+
+### 5. Navigate the UI
+- Load your unannotated JSON/CoNLL data through the **Data Loader** tab.
+- Utilize the background active learning processes.
+- Adjudicate and approve predictions visually via the **Annotator** page.
 
